@@ -20,18 +20,12 @@ zapisu/odczytu opisu na żywej bazie).
 
 ## Instalacja
 
-Paczka istnieje na Packagist, ale wskazuje na zarchiwizowany oryginał — dodaj najpierw to
-repozytorium jako źródło VCS, a potem instaluj gałąź `dev-main`:
-
 ```bash
-composer config repositories.sisl-attrdesc vcs https://github.com/SISL-source/magento2-attribute-description
-composer require dmatthew/magento2-attribute-description:dev-main
+composer require sisl-source/magento2-attribute-description
 bin/magento module:enable Dmatthew_AttributeDescription
 bin/magento setup:upgrade
 bin/magento setup:di:compile   # tryb produkcyjny
 ```
-
-Instalacja tworzy tabelę `eav_attribute_description`.
 
 ## Jak używać
 1. **Sklep → Atrybuty → Produkt**, edytuj atrybut typu *Dropdown* (np. „Rozmiar").
