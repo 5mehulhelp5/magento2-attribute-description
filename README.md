@@ -1,41 +1,41 @@
-# Magento 2 Attribute Description — utrzymywany fork (SISL)
+# Magento 2 Attribute Description — maintained fork (SISL)
 
-Pozwala dodać **opis do wartości atrybutu produktu** — osobno dla każdego widoku sklepu.
-Przykład: atrybut „Rozmiar" z opisem per wartość (tabela rozmiarów przy „XL"), atrybut
-„Materiał" z krótkim wyjaśnieniem przy każdej opcji. Opisy są zapisywane per store i
-udostępniane w danych atrybutów **produktu konfigurowalnego**, więc motyw / swatche mogą je
-pokazać klientowi w miejscu wyboru wariantu.
+Lets you add a **description to a product attribute value** — separately for each store view.
+Example: a "Size" attribute with a per-value description (a size chart next to "XL"), a "Material"
+attribute with a short explanation next to each option. Descriptions are stored per store and
+exposed in the attribute data of the **configurable product**, so the theme / swatches can show
+them to the customer right where they pick a variant.
 
-To **utrzymywany fork** porzuconego (zarchiwizowanego) `dmatthew/magento2-attribute-description`
-(ostatni commit 2022). Oryginał pinuje wąskie wersje modułów rdzenia
-(`magento/module-catalog: 102.0.*|103.0.*|104.0.*` itd.) — **instaluje się jeszcze na 2.4.9, ale
-rozsypie się przy 2.4.10+**, gdy Magento podbije numery modułów. Ten fork rozluźnia zależności do
-`magento/framework` i jest zweryfikowany na **Magento 2.4.9 / PHP 8.4** (di:compile + test
-zapisu/odczytu opisu na żywej bazie).
+This is a **maintained fork** of the abandoned (archived) `dmatthew/magento2-attribute-description`
+(last commit 2022). The original pins narrow core module versions
+(`magento/module-catalog: 102.0.*|103.0.*|104.0.*`, etc.) — it **still installs on 2.4.9, but will
+break on 2.4.10+** once Magento bumps its module numbers. This fork loosens the dependencies to
+`magento/framework` and is verified on **Magento 2.4.9 / PHP 8.4** (di:compile + a
+write/read test of a description against a live database).
 
-## Zgodność
+## Compatibility
 - Magento **2.4.4 – 2.4.9** (Open Source / Adobe Commerce)
 - PHP **8.1 – 8.4**
 - `magento/framework >=103.0.4 <104`
 
-## Instalacja
+## Installation
 
 ```bash
 composer require sisl-source/magento2-attribute-description
 bin/magento module:enable Dmatthew_AttributeDescription
 bin/magento setup:upgrade
-bin/magento setup:di:compile   # tryb produkcyjny
+bin/magento setup:di:compile   # production mode
 ```
 
-## Jak używać
-1. **Sklep → Atrybuty → Produkt**, edytuj atrybut typu *Dropdown* (np. „Rozmiar").
-2. Przy wartościach atrybutu pojawia się pole **Description** — uzupełnij opis (per widok sklepu, jeśli trzeba).
-3. Na karcie produktu konfigurowalnego opis trafia do danych atrybutu (`description`) — motyw/swatche mogą go wyświetlić przy wyborze wariantu.
+## How to use
+1. **Stores → Attributes → Product**, edit a *Dropdown* attribute (e.g. "Size").
+2. A **Description** field appears next to the attribute values — fill it in (per store view if needed).
+3. On the configurable product page the description is added to the attribute data (`description`) — the theme/swatches can display it at variant selection.
 
-## Jak to działa
-- `Observer\CatalogAttributeSaveAfterObserver` — zapisuje opisy do `eav_attribute_description` przy zapisie atrybutu.
-- `Model\ResourceModel\Entity\Attribute::getStoreDescriptionsByAttributeId()` — odczyt opisów per store.
-- `Plugin\Model\ConfigurableAttributeDataPlugin` — dokłada `description` do danych atrybutów produktu konfigurowalnego.
+## How it works
+- `Observer\CatalogAttributeSaveAfterObserver` — saves descriptions to `eav_attribute_description` when the attribute is saved.
+- `Model\ResourceModel\Entity\Attribute::getStoreDescriptionsByAttributeId()` — reads descriptions per store.
+- `Plugin\Model\ConfigurableAttributeDataPlugin` — adds `description` to the configurable product's attribute data.
 
-## Licencja
-MIT (jak oryginał). Fork utrzymywany przez [SISL](https://sisl.pl).
+## License
+MIT (same as upstream). Fork maintained by [SISL](https://sisl.pl).
