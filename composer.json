@@ -1,5 +1,5 @@
 {
-    "name": "dmatthew/magento2-attribute-description",
+    "name": "sisl-source/magento2-attribute-description",
     "description": "Add descriptions to your product attributes.",
     "require": {
         "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0",
